@@ -1,0 +1,25 @@
+env: dev
+sentry_dsn: ~
+
+amqp:
+  tag: ~
+  exchange: ~
+  dsn: ~
+  ssl: ~
+
+postgres:
+  host: ~
+  port: 5432
+  user: ~
+  password: ~
+  database: ~
+
+topics:
+  - topic_name
+
+mappings:
+  - topic: ~
+    table: ~
+    values:
+      time: '{datetime}'
+      column_name: '{value_name}'
