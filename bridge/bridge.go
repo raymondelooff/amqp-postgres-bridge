@@ -9,15 +9,13 @@ type Config struct {
 	Env       string
 	SentryDsn string `yaml:"sentry_dsn"`
 	AMQP      AMQPConfig
+	Postgres  PostgresConfig
 	Topics    []string
-	Mappings  []mappingConfig
+	Mapper    MapperConfig
 }
 
-type mappingConfig struct {
-	Topic  string
-	Table  string
-	Values map[string]string
-}
+// Message represents a single (mapped) Message
+type Message map[string]interface{}
 
 // Bridge represents a Bridge instance
 type Bridge struct {
