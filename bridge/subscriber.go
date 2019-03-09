@@ -26,13 +26,13 @@ type Subscriber struct {
 }
 
 // Connect establishes a connection to the broker and declares the queue
-func (s *Subscriber) connect(config *AMQPConfig) *amqp.Queue {
+func (s *Subscriber) connect() *amqp.Queue {
 	var err error
 
-	if config.TLS == true {
-		s.conn, err = amqp.DialTLS(config.DSN, nil)
+	if s.config.TLS == true {
+		s.conn, err = amqp.DialTLS(s.config.DSN, nil)
 	} else {
-		s.conn, err = amqp.Dial(config.DSN)
+		s.conn, err = amqp.Dial(s.config.DSN)
 	}
 	if err != nil {
 		log.Fatalf("connection: %v", err)
@@ -68,7 +68,7 @@ func (s *Subscriber) connect(config *AMQPConfig) *amqp.Queue {
 func (s *Subscriber) Subscribe() <-chan amqp.Delivery {
 	var err error
 
-	queue := s.connect(&s.config)
+	queue := s.connect()
 
 	log.Printf("binding %d topics to Exchange", len(s.topics))
 	for _, topic := range s.topics {
