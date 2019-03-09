@@ -2,6 +2,7 @@ package bridge
 
 import (
 	"encoding/json"
+	"fmt"
 	"log"
 	"regexp"
 )
@@ -66,14 +67,14 @@ func (m *Mapper) mapKv(k string, v string, data *map[string]interface{}) interfa
 }
 
 // Map the given JSON data into a Message
-func (m *Mapper) Map(topic string, jsonData string) (*Message, error) {
+func (m *Mapper) Map(topic string, jsonData string) (string, *Message, error) {
 	var data map[string]interface{}
 
 	if err := json.Unmarshal([]byte(jsonData), &data); err != nil {
-		return nil, err
+		return "", nil, err
 	}
 
-	var mp mapping
+	var mapping *mapping
 	for i, r := range m.regexes {
 		if r == nil {
 			continue
@@ -94,16 +95,19 @@ func (m *Mapper) Map(topic string, jsonData string) (*Message, error) {
 			data[groups[j]] = matches[j]
 		}
 
-		mp = m.config.Mappings[i]
+		mapping = &m.config.Mappings[i]
 	}
 
-	msg := Message{}
-
-	for k, v := range mp.Values {
-		msg[k] = m.mapKv(k, v, &data)
+	if mapping == nil {
+		return "", nil, fmt.Errorf("mapping not found")
 	}
 
-	return &msg, nil
+	message := Message{}
+	for k, v := range mapping.Values {
+		message[k] = m.mapKv(k, v, &data)
+	}
+
+	return mapping.Table, &message, nil
 }
 
 // NewMapper creates a new Mapper instance
