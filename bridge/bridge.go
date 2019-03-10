@@ -6,12 +6,12 @@ import (
 
 // Config struct represents the YAML file specification
 type Config struct {
-	Env       string
-	SentryDsn string `yaml:"sentry_dsn"`
-	AMQP      AMQPConfig
-	Postgres  PostgresConfig
-	Topics    []string
-	Mapper    MapperConfig
+	Env       string         `yaml:"env"`
+	SentryDsn string         `yaml:"sentry_dsn"`
+	AMQP      AMQPConfig     `yaml:"amqp"`
+	Postgres  PostgresConfig `yaml:"postgres"`
+	Topics    []string       `yaml:"topics"`
+	Mapper    MapperConfig   `yaml:"mapper"`
 }
 
 // Message represents a single (mapped) Message

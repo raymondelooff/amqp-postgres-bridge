@@ -11,7 +11,7 @@ import (
 
 // PostgresConfig represents the config of the PostgreSQL client
 type PostgresConfig struct {
-	DSN string
+	DSN string `yaml:"dsn"`
 }
 
 // PGClient represents a PostgreSQL client

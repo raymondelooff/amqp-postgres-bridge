@@ -9,10 +9,10 @@ import (
 
 // AMQPConfig represents the config of the Subscriber
 type AMQPConfig struct {
-	Tag      string
-	Exchange string
-	DSN      string
-	TLS      bool
+	Tag      string `yaml:"tag"`
+	Exchange string `yaml:"exchange"`
+	DSN      string `yaml:"dsn"`
+	TLS      bool   `yaml:"tls"`
 }
 
 // Subscriber represents an AMQP subscriber

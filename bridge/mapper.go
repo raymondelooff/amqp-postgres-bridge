@@ -9,13 +9,13 @@ import (
 
 // MapperConfig represents the config for a Mapper
 type MapperConfig struct {
-	Mappings []mapping
+	Mappings []mapping `yaml:"mappings"`
 }
 
 type mapping struct {
-	Topic  string
-	Table  string
-	Values map[string]string
+	Topic  string            `yaml:"topic"`
+	Table  string            `yaml:"table"`
+	Values map[string]string `yaml:"values"`
 }
 
 // Mapper represents a mapper that is able to convert
