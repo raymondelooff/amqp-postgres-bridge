@@ -67,10 +67,10 @@ func (m *Mapper) mapKv(k string, v string, data *map[string]interface{}) interfa
 }
 
 // Map the given JSON data into a Message
-func (m *Mapper) Map(topic string, jsonData string) (string, *Message, error) {
+func (m *Mapper) Map(topic string, jsonData []byte) (string, *Message, error) {
 	var data map[string]interface{}
 
-	if err := json.Unmarshal([]byte(jsonData), &data); err != nil {
+	if err := json.Unmarshal(jsonData, &data); err != nil {
 		return "", nil, err
 	}
 

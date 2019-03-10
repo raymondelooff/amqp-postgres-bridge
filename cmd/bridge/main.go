@@ -1,11 +1,11 @@
 package main
 
 import (
-	"context"
 	"io/ioutil"
 	"log"
 	"os"
 	"os/signal"
+	"sync"
 	"syscall"
 
 	"github.com/getsentry/raven-go"
@@ -32,7 +32,10 @@ func main() {
 	raven.SetDSN(c.SentryDsn)
 	raven.SetEnvironment(c.Env)
 
-	ctx, cancel := context.WithCancel(context.Background())
+	b := bridge.NewBridge(c)
+
+	var wg sync.WaitGroup
+	wg.Add(1)
 
 	go func() {
 		exit := make(chan os.Signal, 1)
@@ -40,10 +43,8 @@ func main() {
 
 		<-exit
 
-		cancel()
+		wg.Done()
 	}()
 
-	b := bridge.NewBridge(c)
-
-	b.Run(ctx)
+	b.Run(&wg)
 }
