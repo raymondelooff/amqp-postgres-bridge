@@ -31,10 +31,9 @@ func main() {
 	s := bridge.NewSubscriber(c.AMQP, c.Topics)
 
 	var wg sync.WaitGroup
+	wg.Add(1)
 
 	go func() {
-		wg.Add(1)
-
 		exit := make(chan os.Signal, 1)
 		signal.Notify(exit, syscall.SIGINT, syscall.SIGTERM)
 
