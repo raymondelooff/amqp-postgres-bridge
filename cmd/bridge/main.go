@@ -43,8 +43,10 @@ func main() {
 
 		<-exit
 
+		log.Println("shutting down")
 		wg.Done()
 	}()
 
 	b.Run(&wg)
+	log.Println("shutdown successfull")
 }
