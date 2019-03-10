@@ -48,7 +48,7 @@ func (s *Subscriber) connect() *amqp.Queue {
 	log.Printf("declared Exchange, declaring Queue %q", queueName)
 	queue, err := s.channel.QueueDeclare(
 		queueName, // name
-		false,     // durable
+		true,      // durable
 		false,     // autoDelete
 		false,     // exclusive
 		false,     // noWait
