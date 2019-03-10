@@ -56,7 +56,7 @@ func (b *Bridge) handleDelivery(wg *sync.WaitGroup, delivery *amqp.Delivery) {
 
 	err = b.pgClient.Insert(table, message)
 	if err != nil {
-		log.Printf("insert error: %v", err)
+		log.Printf("insert error: %v, message: %v", err, *message)
 
 		delivery.Reject(true)
 		wg.Done()
