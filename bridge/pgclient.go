@@ -85,14 +85,20 @@ func (c *PGClient) Close() error {
 }
 
 // NewPGClient constructs a new PGClient
-func NewPGClient(config PostgresConfig) *PGClient {
+func NewPGClient(config PostgresConfig) (*PGClient, error) {
 	db, err := sql.Open("postgres", config.DSN)
 	if err != nil {
-		log.Fatalf("could not connect to database: %v", err)
+		return nil, err
 	}
 
-	return &PGClient{
+	if err := db.Ping(); err != nil {
+		return nil, err
+	}
+
+	pg := &PGClient{
 		config: config,
 		db:     db,
 	}
+
+	return pg, nil
 }

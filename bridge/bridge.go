@@ -68,17 +68,22 @@ func (b *Bridge) handleDelivery(wg *sync.WaitGroup, delivery *amqp.Delivery) {
 }
 
 // NewBridge constructs a new Bridge
-func NewBridge(config Config) *Bridge {
+func NewBridge(config Config) (*Bridge, error) {
 	m := NewMapper(config.Mapper)
-	pg := NewPGClient(config.Postgres)
+
+	pg, err := NewPGClient(config.Postgres)
+	if err != nil {
+		return nil, err
+	}
+
 	s := NewSubscriber(config.AMQP, config.Topics)
 
-	b := Bridge{
+	b := &Bridge{
 		config:     config,
 		mapper:     m,
 		pgClient:   pg,
 		subscriber: s,
 	}
 
-	return &b
+	return b, nil
 }

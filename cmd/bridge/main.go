@@ -32,7 +32,10 @@ func main() {
 	raven.SetDSN(c.SentryDsn)
 	raven.SetEnvironment(c.Env)
 
-	b := bridge.NewBridge(c)
+	b, err := bridge.NewBridge(c)
+	if err != nil {
+		log.Fatalf("error: %v", err)
+	}
 
 	var wg sync.WaitGroup
 	wg.Add(1)
