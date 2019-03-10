@@ -1,0 +1,5 @@
+/.git
+/vendor
+.DS_Store
+.gitignore
+config.yaml
