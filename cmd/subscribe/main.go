@@ -43,14 +43,14 @@ func main() {
 		wg.Done()
 	}()
 
-	messages := s.Subscribe()
+	deliveries := s.Subscribe()
 
 	go func() {
-		for message := range messages {
+		for delivery := range deliveries {
 			wg.Add(1)
 
-			log.Println(string(message.Body[:]))
-			message.Ack(true)
+			log.Println(string(delivery.Body[:]))
+			delivery.Ack(true)
 
 			wg.Done()
 		}
