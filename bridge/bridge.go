@@ -30,6 +30,7 @@ type Bridge struct {
 // Run executes the Bridge
 func (b *Bridge) Run(wg *sync.WaitGroup) {
 	deliveries := b.subscriber.Subscribe()
+	defer b.subscriber.Shutdown()
 
 	go func() {
 		for delivery := range deliveries {
