@@ -110,7 +110,7 @@ func (s *Subscriber) Shutdown() error {
 		return fmt.Errorf("AMQP connection close error: %s", err)
 	}
 
-	defer log.Printf("AMQP shutdown OK")
+	defer log.Printf("Consumer shutdown OK")
 
 	return nil
 }

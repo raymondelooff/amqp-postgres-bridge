@@ -43,10 +43,10 @@ func main() {
 
 		<-exit
 
-		log.Println("shutting down")
+		log.Println("Bridge shutting down")
 		wg.Done()
 	}()
 
 	b.Run(&wg)
-	log.Println("shutdown successfull")
+	log.Println("Bridge shutdown OK")
 }
