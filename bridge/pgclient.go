@@ -18,37 +18,30 @@ type PostgresConfig struct {
 type PGClient struct {
 	config PostgresConfig
 	db     *sql.DB
-	stmts  map[string]*sql.Stmt
 }
 
 // prepareInsert prepares a single statement per table name
 func (c *PGClient) prepareInsert(table string, columns []string) (*sql.Stmt, error) {
-	if stmt, ok := c.stmts[table]; ok {
-		return stmt, nil
-	}
-
 	nColumns := len(columns)
 	values := make([]string, nColumns)
 	for i := 0; i < nColumns; i++ {
 		values[i] = fmt.Sprintf("$%d", i+1)
 	}
 
-	stmt := fmt.Sprintf(
+	sql := fmt.Sprintf(
 		"INSERT INTO %s (%s) VALUES (%s)",
 		table,
 		strings.Join(columns, ", "),
 		strings.Join(values, ", "),
 	)
 
-	log.Printf("preparing statement: %s", stmt)
-
 	var err error
-	c.stmts[table], err = c.db.Prepare(stmt)
+	stmt, err := c.db.Prepare(sql)
 	if err != nil {
 		return nil, err
 	}
 
-	return c.stmts[table], nil
+	return stmt, nil
 }
 
 // Insert the given values into the given table
@@ -101,6 +94,5 @@ func NewPGClient(config PostgresConfig) *PGClient {
 	return &PGClient{
 		config: config,
 		db:     db,
-		stmts:  make(map[string]*sql.Stmt),
 	}
 }
