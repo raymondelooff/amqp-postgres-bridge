@@ -64,6 +64,8 @@ func (c *PGClient) Insert(table string, message *Message) error {
 	}
 
 	_, err = stmt.Exec(values...)
+	stmt.Close()
+
 	if err != nil {
 		return err
 	}
