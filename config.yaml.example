@@ -3,23 +3,20 @@ sentry_dsn: ~
 
 amqp:
   tag: ~
-  exchange: ~
-  dsn: ~
-  ssl: ~
+  exchange: amq.topic
+  dsn: amqps://client:password@127.0.0.1:5671
+  tls: true
 
 postgres:
-  host: ~
-  port: 5432
-  user: ~
-  password: ~
-  database: ~
+  dsn: postgres://postgres:postgres@127.0.0.1:5432/postgres
 
 topics:
-  - topic_name
+  - home.#
 
-mappings:
-  - topic: ~
-    table: ~
+mapper:
+  mappings:
+  - topic: ^.*$
+    table: schema_name.table_name
     values:
-      time: '{datetime}'
-      column_name: '{value_name}'
+      time: '%timestamp%'
+      value: '%value%'
