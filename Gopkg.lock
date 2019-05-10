@@ -38,6 +38,14 @@
   version = "v0.8.1"
 
 [[projects]]
+  digest = "1:447ab23604df9681aabfc6e48dbded59cb933b6eb4224e64d9d037318534b1bd"
+  name = "github.com/pkg/profile"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "f6fe06335df110bcf1ed6d4e852b760bfc15beee"
+  version = "v1.3.0"
+
+[[projects]]
   branch = "master"
   digest = "1:d6bb6f3240a488ffe5bb6952b513569d009927dcb20ff94885f87b76cef2b698"
   name = "github.com/streadway/amqp"
@@ -59,6 +67,7 @@
   input-imports = [
     "github.com/getsentry/raven-go",
     "github.com/lib/pq",
+    "github.com/pkg/profile",
     "github.com/streadway/amqp",
     "gopkg.in/yaml.v2",
   ]

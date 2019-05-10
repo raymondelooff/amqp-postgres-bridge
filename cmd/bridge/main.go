@@ -9,11 +9,15 @@ import (
 	"syscall"
 
 	"github.com/getsentry/raven-go"
+	"github.com/pkg/profile"
 	"github.com/raymondelooff/amqp-postgres-bridge/bridge"
 	"gopkg.in/yaml.v2"
 )
 
 func main() {
+	// Memory profiling
+	defer profile.Start(profile.MemProfile).Stop()
+
 	if len(os.Args) < 2 {
 		log.Fatalf("error: config file location not specified")
 	}
