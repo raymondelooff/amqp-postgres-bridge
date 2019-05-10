@@ -18,15 +18,16 @@
   version = "v0.2.0"
 
 [[projects]]
-  digest = "1:8ef506fc2bb9ced9b151dafa592d4046063d744c646c1bbe801982ce87e4bc24"
+  digest = "1:bdd53b87de8185da386bae179c84d4848854c6870bacacf6a154fe63e2e750f7"
   name = "github.com/lib/pq"
   packages = [
     ".",
     "oid",
+    "scram",
   ]
   pruneopts = "UT"
-  revision = "4ded0e9383f75c197b3a2aaa6d590ac52df6fd79"
-  version = "v1.0.0"
+  revision = "bc6a3c0594130b1e34005880bc600b6d3f49fa7f"
+  version = "v1.1.1"
 
 [[projects]]
   digest = "1:cf31692c14422fa27c83a05292eb5cbe0fb2775972e8f1f8446a71549bd8980b"
@@ -38,11 +39,11 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:dbd2b63224b02f9c7fd0631edaf6588dfb05fc20608f548fb603ef096fa87474"
+  digest = "1:d6bb6f3240a488ffe5bb6952b513569d009927dcb20ff94885f87b76cef2b698"
   name = "github.com/streadway/amqp"
   packages = ["."]
   pruneopts = "UT"
-  revision = "884228600bc96c993ab12fb81ba78bf0c280e88a"
+  revision = "75d898a42a940fbc854dfd1a4199eabdc00cf024"
 
 [[projects]]
   digest = "1:4d2e5a73dc1500038e504a8d78b986630e3626dc027bc030ba5c75da257cdb96"
