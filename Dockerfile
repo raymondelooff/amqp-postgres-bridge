@@ -10,7 +10,7 @@ RUN cd /go/src/github.com/raymondelooff/amqp-postgres-bridge && \
     apk add --no-cache --virtual .build-deps git dep && \
     dep ensure && \
     go build -o /go/bin/amqp-postgres-bridge /go/src/github.com/raymondelooff/amqp-postgres-bridge/cmd/bridge/main.go && \
-    rm -rf /app/src/* && \
+    rm -rf /go/src/* && \
     apk del .build-deps
 
 VOLUME /config
