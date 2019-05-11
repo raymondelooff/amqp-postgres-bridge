@@ -96,6 +96,8 @@ func (m *Mapper) Map(topic string, jsonData []byte) (string, *Message, error) {
 		}
 
 		mapping = &m.config.Mappings[i]
+
+		break
 	}
 
 	if mapping == nil {
