@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"log"
 	"regexp"
+
+	"gopkg.in/go-playground/validator.v9"
 )
 
 // MapperConfig represents the config for a Mapper
@@ -13,16 +15,18 @@ type MapperConfig struct {
 }
 
 type mapping struct {
-	Topic  string            `yaml:"topic"`
-	Table  string            `yaml:"table"`
-	Values map[string]string `yaml:"values"`
+	Topic    string            `yaml:"topic"`
+	Table    string            `yaml:"table"`
+	Values   map[string]string `yaml:"values"`
+	Validate map[string]string `yaml:"validate"`
 }
 
 // Mapper represents a mapper that is able to convert
 // incoming messages to the desired format.
 type Mapper struct {
-	config  MapperConfig
-	regexes []*regexp.Regexp
+	config   MapperConfig
+	regexes  []*regexp.Regexp
+	validate *validator.Validate
 }
 
 // Initialize regexes from the config spec
@@ -66,6 +70,22 @@ func (m *Mapper) mapKv(k string, v string, data *map[string]interface{}) interfa
 	return v
 }
 
+func (m *Mapper) validateKv(k string, v interface{}, mapping *mapping) error {
+	var tag string
+	var ok bool
+
+	// If no validation rule exists, skip the check.
+	if tag, ok = mapping.Validate[k]; ok == false {
+		return nil
+	}
+
+	if err := m.validate.Var(fmt.Sprint(v), tag); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // Map the given JSON data into a Message
 func (m *Mapper) Map(topic string, jsonData []byte) (string, *Message, error) {
 	var data map[string]interface{}
@@ -106,7 +126,13 @@ func (m *Mapper) Map(topic string, jsonData []byte) (string, *Message, error) {
 
 	message := Message{}
 	for k, v := range mapping.Values {
-		message[k] = m.mapKv(k, v, &data)
+		val := m.mapKv(k, v, &data)
+
+		if err := m.validateKv(k, val, mapping); err != nil {
+			return "", nil, fmt.Errorf("validation error: %v", err)
+		}
+
+		message[k] = val
 	}
 
 	return mapping.Table, &message, nil
@@ -115,8 +141,9 @@ func (m *Mapper) Map(topic string, jsonData []byte) (string, *Message, error) {
 // NewMapper creates a new Mapper instance
 func NewMapper(config MapperConfig) *Mapper {
 	m := Mapper{
-		config:  config,
-		regexes: make([]*regexp.Regexp, len(config.Mappings)),
+		config:   config,
+		regexes:  make([]*regexp.Regexp, len(config.Mappings)),
+		validate: validator.New(),
 	}
 
 	m.Initialize()
