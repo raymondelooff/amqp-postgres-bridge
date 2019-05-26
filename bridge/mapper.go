@@ -129,7 +129,7 @@ func (m *Mapper) Map(topic string, jsonData []byte) (string, *Message, error) {
 		val := m.mapKv(k, v, &data)
 
 		if err := m.validateKv(k, val, mapping); err != nil {
-			return "", nil, fmt.Errorf("validation error: %v", err)
+			return "", nil, fmt.Errorf("validation error: %v (value: %v)", err, val)
 		}
 
 		message[k] = val
