@@ -79,22 +79,8 @@ func (s *Subscriber) connect() (*amqp.Queue, error) {
 		return nil, err
 	}
 
-	log.Printf("binding %d topics to Exchange", len(s.topics))
-	for _, topic := range s.topics {
-		log.Printf("binding topic to Exchange (key: %q)", topic)
-		err = s.channel.QueueBind(
-			queue.Name,        // name
-			topic,             // key
-			s.config.Exchange, // exchange
-			false,             // noWait
-			nil,               // arguments
-		)
-		if err != nil {
-			log.Printf("Queue bind: %v", err)
-
-			return nil, err
-		}
-	}
+	log.Printf("declared Queue %q (%d messages, %d consumers)",
+		queue.Name, queue.Messages, queue.Consumers)
 
 	return &queue, nil
 }
@@ -108,6 +94,23 @@ func (s *Subscriber) Subscribe() chan amqp.Delivery {
 					queue, err := s.connect()
 					if err != nil {
 						return err
+					}
+
+					log.Printf("binding %d topics to Exchange", len(s.topics))
+					for _, topic := range s.topics {
+						log.Printf("binding topic to Exchange (key: %q)", topic)
+						err = s.channel.QueueBind(
+							queue.Name,        // name
+							topic,             // key
+							s.config.Exchange, // exchange
+							false,             // noWait
+							nil,               // arguments
+						)
+						if err != nil {
+							log.Printf("Queue bind: %v", err)
+
+							return err
+						}
 					}
 
 					log.Printf("Queue bound to Exchange, starting Consume (consumer tag %q)", s.tag)
