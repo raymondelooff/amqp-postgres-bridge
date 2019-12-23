@@ -81,6 +81,17 @@
   version = "v1.4.0"
 
 [[projects]]
+  digest = "1:92b2997779195a30724ba5a81a02a5363c85769434cdf8579b7fc99f6a135513"
+  name = "github.com/segmentio/encoding"
+  packages = [
+    "ascii",
+    "json",
+  ]
+  pruneopts = "UT"
+  revision = "4b8334c3b2a9ebce1617475ef6dbcec06ea1cfa2"
+  version = "v0.1.8"
+
+[[projects]]
   branch = "master"
   digest = "1:3df46e572883257c46c470dc1796f9bc609d0d0d7339dd10358030649b9beb93"
   name = "github.com/streadway/amqp"
@@ -112,6 +123,7 @@
     "github.com/getsentry/raven-go",
     "github.com/lib/pq",
     "github.com/pkg/profile",
+    "github.com/segmentio/encoding/json",
     "github.com/streadway/amqp",
     "gopkg.in/go-playground/validator.v9",
     "gopkg.in/yaml.v2",

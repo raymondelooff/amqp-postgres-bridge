@@ -1,10 +1,11 @@
 package bridge
 
 import (
-	"encoding/json"
 	"fmt"
 	"log"
 	"regexp"
+
+	"github.com/segmentio/encoding/json"
 
 	"gopkg.in/go-playground/validator.v9"
 )
