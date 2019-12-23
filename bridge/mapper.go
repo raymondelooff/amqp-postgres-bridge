@@ -7,7 +7,7 @@ import (
 
 	"github.com/segmentio/encoding/json"
 
-	"gopkg.in/go-playground/validator.v9"
+	"github.com/go-playground/validator/v10"
 )
 
 // MapperConfig represents the config for a Mapper
