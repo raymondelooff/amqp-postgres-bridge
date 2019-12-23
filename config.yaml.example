@@ -16,7 +16,10 @@ topics:
 mapper:
   mappings:
   - topic: ^.*$
-    table: schema_name.table_name
+    table: <schema_name>.<table_name>
     values:
       time: '%timestamp%'
       value: '%value%'
+    validate:
+      time: 'required'
+      value: 'required,alphanum'
