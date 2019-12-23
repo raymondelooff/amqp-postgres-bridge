@@ -2,12 +2,12 @@
 
 
 [[projects]]
-  digest = "1:6c7e9c6eaab0e5579b85151932e4e11347cd2869a97b2a098b80a872abe561d6"
+  digest = "1:6062abf6317d3d6963496e01e22264a2e8a7e3b35e2917aa00ed3d182f569be6"
   name = "github.com/avast/retry-go"
   packages = ["."]
   pruneopts = "UT"
-  revision = "a322e24d96313ab405dec28ad5711f036c6d25a3"
-  version = "v2.4.2"
+  revision = "f9a5f3752008752cd4f31f9c0c4dc60dec4583e5"
+  version = "v2.4.3"
 
 [[projects]]
   digest = "1:fed1f537c2f1269fe475a8556c393fe466641682d73ef8fd0491cd3aa1e47bad"
@@ -53,7 +53,7 @@
   version = "v1.2.0"
 
 [[projects]]
-  digest = "1:12cb143f2148bf54bcd9fe622abac17325e85eeb1d84b8ec6caf1c80232108fd"
+  digest = "1:9ff22c26414baf7deaf74f2a788fe7b97666048bcbe346c52cfe823442abbdfb"
   name = "github.com/lib/pq"
   packages = [
     ".",
@@ -61,8 +61,8 @@
     "scram",
   ]
   pruneopts = "UT"
-  revision = "3427c32cb71afc948325f299f040e53c1dd78979"
-  version = "v1.2.0"
+  revision = "99274577be97ac9b1d95a2d61d566dc9b7cc6a54"
+  version = "v1.3.0"
 
 [[projects]]
   digest = "1:cf31692c14422fa27c83a05292eb5cbe0fb2775972e8f1f8446a71549bd8980b"
@@ -73,12 +73,12 @@
   version = "v0.8.1"
 
 [[projects]]
-  digest = "1:447ab23604df9681aabfc6e48dbded59cb933b6eb4224e64d9d037318534b1bd"
+  digest = "1:85af92fe0f90252a135ce4a3115abec6347d9c5e6470e374df67113ac8a0e257"
   name = "github.com/pkg/profile"
   packages = ["."]
   pruneopts = "UT"
-  revision = "f6fe06335df110bcf1ed6d4e852b760bfc15beee"
-  version = "v1.3.0"
+  revision = "acd64d450fd45fb2afa41f833f3788c8a7797219"
+  version = "v1.4.0"
 
 [[projects]]
   branch = "master"
@@ -89,20 +89,20 @@
   revision = "edfb9018d2714e4ec54dbaba37dbfef2bdadf0e4"
 
 [[projects]]
-  digest = "1:3a8ecdedfd4149826ed0146acd8b8b1d5f7493e2cd642ee6c902234f6e6434fd"
+  digest = "1:2db5a1f3b009007bce11fc8bd83e69a70f3f8cd84afd85b2f873fc2baedd7b6a"
   name = "gopkg.in/go-playground/validator.v9"
   packages = ["."]
   pruneopts = "UT"
-  revision = "cd1bd581694a11c089aea885a26247c5f783a4cf"
-  version = "v9.30.0"
+  revision = "bde478f9466b5371375581708adf1b77acd08b72"
+  version = "v9.30.2"
 
 [[projects]]
-  digest = "1:f26a5d382387e03a40d1471dddfba85dfff9bf05352d7e42d37612677c4d3c5c"
+  digest = "1:b75b3deb2bce8bc079e16bb2aecfe01eb80098f5650f9e93e5643ca8b7b73737"
   name = "gopkg.in/yaml.v2"
   packages = ["."]
   pruneopts = "UT"
-  revision = "f90ceb4f409096b60e2e9076b38b304b8246e5fa"
-  version = "v2.2.5"
+  revision = "1f64d6156d11335c3f22d9330b0ad14fc1e789ce"
+  version = "v2.2.7"
 
 [solve-meta]
   analyzer-name = "dep"
