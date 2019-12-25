@@ -1,4 +1,4 @@
-FROM golang:1.13-alpine
+FROM golang:1.13-alpine AS builder
 
 LABEL maintainer="raymondelooff"
 
@@ -6,11 +6,14 @@ WORKDIR /go/src/app
 
 ADD . .
 
-RUN mkdir -p /app
+RUN CGO_ENABLED=0 GOOS=linux go build -a -o /go/bin/amqp-postgres-bridge cmd/bridge/main.go
 
-RUN go build -o /app/amqp-postgres-bridge cmd/bridge/main.go && \
-    rm -rf /go
+FROM scratch
+
+WORKDIR /root
+
+COPY --from=builder /go/bin/amqp-postgres-bridge .
 
 VOLUME /config
 
-ENTRYPOINT ["/app/amqp-postgres-bridge"]
+ENTRYPOINT ["/root/amqp-postgres-bridge"]
