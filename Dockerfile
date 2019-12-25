@@ -8,12 +8,12 @@ ADD . .
 
 RUN CGO_ENABLED=0 GOOS=linux go build -a -o /go/bin/amqp-postgres-bridge cmd/bridge/main.go
 
-FROM scratch
+FROM gcr.io/distroless/base
 
-WORKDIR /root
+WORKDIR /bin
 
 COPY --from=builder /go/bin/amqp-postgres-bridge .
 
 VOLUME /config
 
-ENTRYPOINT ["/root/amqp-postgres-bridge"]
+ENTRYPOINT ["/bin/amqp-postgres-bridge"]
