@@ -48,7 +48,7 @@ func (b *Bridge) handleDelivery(wg *sync.WaitGroup, delivery *amqp.Delivery) {
 
 	table, message, err := b.mapper.Map(delivery.RoutingKey, delivery.Body)
 	if err != nil {
-		delivery.Nack(true, false)
+		delivery.Nack(false, false)
 		wg.Done()
 
 		return
@@ -58,13 +58,13 @@ func (b *Bridge) handleDelivery(wg *sync.WaitGroup, delivery *amqp.Delivery) {
 	if err != nil {
 		log.Printf("insert error: %v, message: %v", err, *message)
 
-		delivery.Nack(true, true)
+		delivery.Nack(false, true)
 		wg.Done()
 
 		return
 	}
 
-	delivery.Ack(true)
+	delivery.Ack(false)
 	wg.Done()
 
 	return
