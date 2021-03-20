@@ -1,4 +1,4 @@
-FROM golang:1.15-alpine AS builder
+FROM golang:alpine AS builder
 
 LABEL maintainer="raymondelooff"
 
