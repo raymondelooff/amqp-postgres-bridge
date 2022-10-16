@@ -11,7 +11,7 @@ import (
 
 	"github.com/getsentry/sentry-go"
 	"github.com/raymondelooff/amqp-postgres-bridge/bridge"
-	"gopkg.in/yaml.v2"
+	"gopkg.in/yaml.v3"
 )
 
 func main() {
