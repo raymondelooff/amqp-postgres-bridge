@@ -7,8 +7,9 @@ import (
 	"os/signal"
 	"sync"
 	"syscall"
+	"time"
 
-	"github.com/getsentry/raven-go"
+	"github.com/getsentry/sentry-go"
 	"github.com/raymondelooff/amqp-postgres-bridge/bridge"
 	"gopkg.in/yaml.v2"
 )
@@ -29,8 +30,16 @@ func main() {
 		log.Fatalf("error: %v", err)
 	}
 
-	raven.SetDSN(c.SentryDsn)
-	raven.SetEnvironment(c.Env)
+	err = sentry.Init(sentry.ClientOptions{
+		Dsn:         c.SentryDsn,
+		Environment: c.Env,
+	})
+	if err != nil {
+		log.Fatalf("sentry.Init: %s", err)
+	}
+	// Flush buffered events before the program terminates.
+	// Set the timeout to the maximum duration the program can afford to wait.
+	defer sentry.Flush(2 * time.Second)
 
 	b, err := bridge.NewBridge(c)
 	if err != nil {

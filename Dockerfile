@@ -1,4 +1,4 @@
-FROM golang:1.17-alpine AS builder
+FROM golang:1.18-alpine AS builder
 
 LABEL maintainer="raymondelooff"
 
@@ -6,7 +6,9 @@ WORKDIR /go/src/app
 
 ADD . .
 
-RUN CGO_ENABLED=0 GOOS=linux go build -a -o /go/bin/amqp-postgres-bridge cmd/bridge/main.go
+RUN go mod vendor
+
+RUN CGO_ENABLED=0 GOOS=linux go build -mod=vendor -a -o /go/bin/amqp-postgres-bridge cmd/bridge/main.go
 
 FROM gcr.io/distroless/base
 
