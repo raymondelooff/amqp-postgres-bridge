@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/avast/retry-go v3.0.0+incompatible
-	github.com/getsentry/sentry-go v0.14.0
+	github.com/getsentry/sentry-go v0.15.0
 	github.com/go-playground/validator/v10 v10.11.1
 	github.com/lib/pq v1.10.7
 	github.com/segmentio/encoding v0.3.6
