@@ -8,7 +8,7 @@ ADD . .
 
 RUN go mod vendor
 
-RUN CGO_ENABLED=0 GOOS=linux go build -mod=vendor -a -o /go/bin/amqp-postgres-bridge cmd/bridge/main.go
+RUN CGO_ENABLED=0 GOOS=linux go build -o /go/bin/amqp-postgres-bridge
 
 FROM gcr.io/distroless/base
 
