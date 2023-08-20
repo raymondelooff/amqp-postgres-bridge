@@ -55,10 +55,12 @@ func main() {
 
 		<-exit
 
-		log.Println("Bridge shutting down")
 		wg.Done()
 	}()
 
-	b.Run(&wg)
-	log.Println("Bridge shutdown OK")
+	func() {
+		defer sentry.Recover()
+
+		b.Run(&wg)
+	}()
 }
