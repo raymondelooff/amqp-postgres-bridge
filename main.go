@@ -10,7 +10,7 @@ import (
 	"time"
 
 	"github.com/getsentry/sentry-go"
-	"github.com/raymondelooff/amqp-postgres-bridge/bridge"
+	"github.com/raymondelooff/amqp-postgres-bridge/internal/bridge"
 	"gopkg.in/yaml.v3"
 )
 
