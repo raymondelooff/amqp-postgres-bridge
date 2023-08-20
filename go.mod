@@ -6,7 +6,7 @@ require (
 	github.com/avast/retry-go v3.0.0+incompatible
 	github.com/getsentry/sentry-go v0.18.0
 	github.com/go-playground/validator/v10 v10.15.1
-	github.com/lib/pq v1.10.7
+	github.com/lib/pq v1.10.9
 	github.com/rabbitmq/amqp091-go v1.8.1
 	gopkg.in/yaml.v3 v3.0.1
 )
