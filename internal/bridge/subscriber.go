@@ -6,7 +6,7 @@ import (
 	"sync"
 
 	"github.com/avast/retry-go"
-	"github.com/streadway/amqp"
+	amqp "github.com/rabbitmq/amqp091-go"
 )
 
 // AMQPConfig represents the config of the Subscriber
@@ -32,7 +32,7 @@ type Subscriber struct {
 func (s *Subscriber) dial() error {
 	var err error
 
-	if s.config.TLS == true {
+	if s.config.TLS {
 		s.conn, err = amqp.DialTLS(s.config.DSN, nil)
 	} else {
 		s.conn, err = amqp.Dial(s.config.DSN)
