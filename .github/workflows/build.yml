@@ -3,11 +3,7 @@ name: Go package
 env:
   GO_VERSION: '1.21'
 
-on:
-  push:
-    branches: [ "develop" ]
-  pull_request:
-    branches: [ "develop" ]
+on: [push]
 
 jobs:
   build:
