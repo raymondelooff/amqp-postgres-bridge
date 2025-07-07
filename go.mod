@@ -5,7 +5,7 @@ go 1.24
 require (
 	github.com/avast/retry-go v3.0.0+incompatible
 	github.com/getsentry/sentry-go v0.34.0
-	github.com/go-playground/validator/v10 v10.26.0
+	github.com/go-playground/validator/v10 v10.27.0
 	github.com/lib/pq v1.10.9
 	github.com/rabbitmq/amqp091-go v1.10.0
 	gopkg.in/yaml.v3 v3.0.1
