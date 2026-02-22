@@ -1,6 +1,6 @@
 module github.com/raymondelooff/amqp-postgres-bridge
 
-go 1.24.0
+go 1.25.0
 
 require (
 	github.com/avast/retry-go v3.0.0+incompatible
