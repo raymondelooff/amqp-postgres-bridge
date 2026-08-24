@@ -7,7 +7,7 @@ require (
 	github.com/getsentry/sentry-go v0.48.0
 	github.com/go-playground/validator/v10 v10.30.3
 	github.com/lib/pq v1.12.3
-	github.com/rabbitmq/amqp091-go v1.13.0
+	github.com/rabbitmq/amqp091-go v1.14.0
 	gopkg.in/yaml.v3 v3.0.1
 )
 
